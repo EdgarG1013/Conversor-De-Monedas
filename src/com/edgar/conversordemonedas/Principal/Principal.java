@@ -62,9 +62,10 @@ public class Principal {
                                 int cantidad = entrada.nextInt();
 
                                 MonedaAPI miMonedaApi = conexion.HacerConversion( "USD/COP/" + cantidad);
+                                Moneda miMoneda = new Moneda(miMonedaApi);
 
                                 System.out.println("------------------------------------------");
-                                System.out.println(miMonedaApi);
+                                System.out.println(miMoneda);
 
 
 

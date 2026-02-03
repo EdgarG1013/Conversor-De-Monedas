@@ -1,5 +1,8 @@
 package com.edgar.conversordemonedas.Modelos;
 
+import com.edgar.conversordemonedas.Principal.Principal;
+import com.sun.jdi.IntegerValue;
+
 public class Moneda {
 
     private String nombre;
@@ -9,8 +12,8 @@ public class Moneda {
     public Moneda (MonedaAPI monedaAPI) {
 
         this.nombre = monedaAPI.target_code();
-        this.valor = Integer.parseInt(monedaAPI.conversion_result());
-        this.tasaDeconversion = Integer.parseInt(monedaAPI.conversion_rate());
+        this.valor = (int) Double.parseDouble(monedaAPI.conversion_result());
+        this.tasaDeconversion = (int) Double.parseDouble(monedaAPI.conversion_rate());
 
     }
 
@@ -40,10 +43,11 @@ public class Moneda {
 
     @Override
     public String toString() {
-        return "Moneda{" +
-                "target_code='" + nombre + '\'' +
-                ", conversion_result=" + valor +
-                ", tasaDeconversion='" + tasaDeconversion + '\'' +
-                '}';
+        return """
+                Cambio de Moneda de Dólar a pesos colombianos (COP)
+                """ +
+                "Tipo de moneda: " + nombre + ", " +
+                "Son: " + valor + ", " +
+                "tasa De conversion: " + tasaDeconversion;
     }
 }
