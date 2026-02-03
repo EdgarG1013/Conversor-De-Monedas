@@ -1,5 +1,9 @@
 package com.edgar.conversordemonedas.Principal;
 
+import com.edgar.conversordemonedas.API.Conexion;
+import com.edgar.conversordemonedas.Modelos.Moneda;
+import com.edgar.conversordemonedas.Modelos.MonedaAPI;
+
 import java.util.Scanner;
 
 public class Principal {
@@ -9,6 +13,9 @@ public class Principal {
         Scanner entrada = new Scanner(System.in);
         int Opcion;
 
+        var conexion = new Conexion();
+
+
         do {
 
             System.out.println("------------------------------------------");
@@ -17,7 +24,7 @@ public class Principal {
             System.out.println("Elige una de las opciones escribiendo en numero");
             System.out.println("------------------------------------------");
             System.out.println(" 1. Cambiar de una moneda a otra ");
-            System.out.println(" 2. Ver el valor histórico de una moneda");
+            System.out.println(" 2. Ver el conversion_result histórico de una moneda");
             System.out.println(" 3. Ver mi historial de coversiones");
             System.out.println(" 4. Salir");
             System.out.println("------------------------------------------");
@@ -44,9 +51,24 @@ public class Principal {
 
                     int OpcionCase1 = entrada.nextInt();
 
-                    if (OpcionCase1 == 8){
-                        Opcion = 4;
-                    }
+                        switch (OpcionCase1) {
+
+                            case 1:
+
+                                System.out.println("------------------------------------------");
+                                System.out.println("       Ingrese la cantidad      ");
+                                System.out.println("------------------------------------------");
+
+                                int cantidad = entrada.nextInt();
+
+                                MonedaAPI miMonedaApi = conexion.HacerConversion( "USD/COP/" + cantidad);
+
+                                System.out.println("------------------------------------------");
+                                System.out.println(miMonedaApi);
+
+
+
+                        }
 
 
                     break;
@@ -58,14 +80,6 @@ public class Principal {
 
                 case 3:
 
-
-                    break;
-
-                case 5:
-
-                    break;
-
-                case 6:
 
                     break;
 
