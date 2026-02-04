@@ -163,11 +163,12 @@ public class Conversiones {
                     break;
                 }
             }
+
+            System.out.println("------------------------------------------");
+
         } catch (Exception e) {
             System.out.println("Error: No se pudo obtener la información de la moneda.");
         }
-
-
     }
 
 }
