@@ -4,6 +4,8 @@ import com.edgar.conversordemonedas.API.Conexion;
 
 import java.text.DecimalFormat;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Conversiones {
 
@@ -11,6 +13,8 @@ public class Conversiones {
     Conexion conexion = new Conexion();
 
     double cantidad;
+
+    private List<String> historial = new ArrayList<>();
 
 
     public void IngresarCantidad() {
@@ -20,6 +24,7 @@ public class Conversiones {
         System.out.println("------------------------------------------");
 
         cantidad = entrada.nextDouble();
+        entrada.nextLine(); // Consumir el salto de línea pendiente
 
     }
 
@@ -58,6 +63,9 @@ public class Conversiones {
         System.out.println("------------------------------------------\n");
         System.out.println("El valor de: "+ cantidad + " " + monedaAcambiar + " ("+ MonedaINI +") " + "son: " + miMoneda.getValor() + " " + monedaCambiada + " (" + miMoneda.getNombre() + ")");
         System.out.println("Usando una tasa de conversion de: "+ miMoneda.getTasaDeconversion() +"\n");
+
+        String registro = cantidad + " " + monedaAcambiar + " (" + MonedaINI + ") => " + miMoneda.getValor() + " " + monedaCambiada + " (" + miMoneda.getNombre() + ") Tasa: " + miMoneda.getTasaDeconversion();
+        historial.add(registro);
 
     }
 
@@ -109,7 +117,28 @@ public class Conversiones {
         System.out.println("El valor de: "+ cantidad + " " + monedaAcambiar + " ("+ MonedaINI +") " + "son: " + miMoneda.getValor() + " " + monedaCambiada + " (" + miMoneda.getNombre() + ")");
         System.out.println("Usando una tasa de conversion de: "+ miMoneda.getTasaDeconversion() +"\n");
 
+        String registro = cantidad + " " + monedaAcambiar + " (" + MonedaINI + ") => " + miMoneda.getValor() + " " + monedaCambiada + " (" + miMoneda.getNombre() + ") Tasa: " + miMoneda.getTasaDeconversion();
+        historial.add(registro);
+
     }
+
+    public void verHistorial() {
+
+        System.out.println("------------------------------------------");
+        System.out.println("          Historial de conversiones       ");
+        System.out.println("------------------------------------------");
+
+        if (historial.isEmpty()) {
+            System.out.println("No hay conversiones registradas.\n");
+        } else {
+            for (int i = 0; i < historial.size(); i++) {
+                System.out.println((i+1) + ". " + historial.get(i));
+            }
+            System.out.println();
+        }
+    }
+
+
 
 
 }

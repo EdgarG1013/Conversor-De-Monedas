@@ -2,6 +2,7 @@ package com.edgar.conversordemonedas.Principal;
 
 import com.edgar.conversordemonedas.API.Conexion;
 import com.edgar.conversordemonedas.Modelos.Conversiones;
+import com.edgar.conversordemonedas.Modelos.Moneda;
 
 import java.util.Scanner;
 
@@ -30,6 +31,7 @@ public class Principal {
             System.out.println("------------------------------------------");
 
             Opcion = entrada.nextInt();
+            entrada.nextLine(); // Consumir el salto de línea pendiente
 
             switch (Opcion) {
 
@@ -55,12 +57,14 @@ public class Principal {
                         System.out.println("------------------------------------------");
 
                         OpcionCase1 = entrada.nextInt();
+                        entrada.nextLine(); // Consumir el salto de línea pendiente
 
                         switch (OpcionCase1) {
 
                             case 1:
 
                                 Conversiones.ConversionEstatica("USD", "COP");
+
 
                                 break;
 
@@ -106,6 +110,7 @@ public class Principal {
 
 
                             default:
+
                                 System.out.println("------------------------------------------");
                                 System.out.println(" Opción no valida, Elige una opción del menu ");
                                 System.out.println("------------------------------------------");
@@ -124,6 +129,7 @@ public class Principal {
 
                 case 3:
 
+                    Conversiones.verHistorial();
 
                     break;
 
