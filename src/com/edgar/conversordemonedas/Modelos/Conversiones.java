@@ -113,7 +113,7 @@ public class Conversiones {
             monedaCambiada = "reales";
         }
 
-        System.out.println("------------------------------------------\n");
+        System.out.println("------------------------------------------");
         System.out.println("El valor de: "+ cantidad + " " + monedaAcambiar + " ("+ MonedaINI +") " + "son: " + miMoneda.getValor() + " " + monedaCambiada + " (" + miMoneda.getNombre() + ")");
         System.out.println("Usando una tasa de conversion de: "+ miMoneda.getTasaDeconversion() +"\n");
 
@@ -129,7 +129,7 @@ public class Conversiones {
         System.out.println("------------------------------------------");
 
         if (historial.isEmpty()) {
-            System.out.println("No hay conversiones registradas.\n");
+            System.out.println("No hay conversiones registradas.");
         } else {
             for (int i = 0; i < historial.size(); i++) {
                 System.out.println((i+1) + ". " + historial.get(i));
@@ -138,7 +138,37 @@ public class Conversiones {
         }
     }
 
+    public void VerCambiosHistoricos() {
+
+        System.out.println("------------------------------------------");
+        System.out.println("     Ingrese el Nombre de la moneda  ");
+        System.out.println("  en formato de divisas (ej. COP,USD,EUR) ");
+        System.out.println("------------------------------------------");
+
+        String nombreMoneda = entrada.nextLine().toUpperCase();
 
 
+        try {
+            MonedaHistoricoFecha historico = conexion.ObtenerHistoricoMonedaFecha(nombreMoneda);
+
+            System.out.println("------------------------------------------");
+            System.out.println("Tasas de cambio actuales para " + historico.base_code());
+            System.out.println("------------------------------------------");
+
+            int contador = 1;
+            for (var tasa : historico.conversion_rates().entrySet()) {
+                System.out.println(contador + ". " + tasa.getKey() + " => " + tasa.getValue());
+                contador++;
+                if (contador > 25) {
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error: No se pudo obtener la información de la moneda.");
+        }
+
+
+    }
 
 }
+

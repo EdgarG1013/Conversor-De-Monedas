@@ -2,6 +2,7 @@ package com.edgar.conversordemonedas.API;
 
 import com.edgar.conversordemonedas.Modelos.Moneda;
 import com.edgar.conversordemonedas.Modelos.MonedaAPI;
+import com.edgar.conversordemonedas.Modelos.MonedaHistoricoFecha;
 import com.google.gson.Gson;
 
 import java.net.URI;
@@ -12,6 +13,7 @@ import java.net.http.HttpResponse;
 public class Conexion {
 
     String json;
+    String jsonHistorial;
 
     public String getJson() {
         return json;
@@ -42,6 +44,28 @@ public class Conexion {
 
     }
 
+    public MonedaHistoricoFecha ObtenerHistoricoMonedaFecha(String codigoMoneda){
+
+        URI direccion = URI.create("https://v6.exchangerate-api.com/v6/3aca20c1f1da821e1f6f7178/latest/"+codigoMoneda);
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(direccion)
+                .build();
+
+        try {
+            HttpResponse<String> response = client
+                    .send(request, HttpResponse.BodyHandlers.ofString());
+
+            jsonHistorial = response.body();
+
+            return new Gson().fromJson(jsonHistorial, MonedaHistoricoFecha.class);
+
+        } catch (Exception e) {
+            throw new RuntimeException("No encontré esa moneda.");
+        }
+
+    }
 
 
 }

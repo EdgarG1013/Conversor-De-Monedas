@@ -25,7 +25,7 @@ public class Principal {
             System.out.println("Elige una de las opciones escribiendo en numero");
             System.out.println("------------------------------------------");
             System.out.println(" 1. Cambiar de una moneda a otra ");
-            System.out.println(" 2. Ver la cambios históricos de una moneda");
+            System.out.println(" 2. Ver la tasa actual de una moneda");
             System.out.println(" 3. Ver mi historial de coversiones");
             System.out.println(" 4. Salir");
             System.out.println("------------------------------------------");
@@ -124,6 +124,7 @@ public class Principal {
 
                 case 2:
 
+                    Conversiones.VerCambiosHistoricos();
 
                     break;
 
